@@ -1,0 +1,43 @@
+
+@import "tailwindcss";
+
+:root {
+  --font-sans: gal-gothic-variable, sans-serif;
+  --font-display: daith-vf, sans-serif;
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 100;
+}
+
+.content {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.underline {
+  text-underline-offset: 3px;
+}
+
+#app {
+  position:relative;
+}
+
+.main-content {
+  position: relative;
+}
+
+.main-content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 156px;
+  height: 100%;
+  background-color: #39786b;
+}
