@@ -49,12 +49,12 @@ onMounted (async () => {
 </script>
 
 <template>
-  <div class="main-content pl-60 pr-[100px] py-[100px]">
+  <div class="main-content pl-[60px]  pr-[20px] py-[40px] md:pl-[130px] md:pr-[50px] md:py-[55px] lg:pl-60 lg:pr-[100px] lg:py-[100px]">
     <div class="max-w-[78rem] mx-auto">
-      <h1 class="text-[42px] font-display">Selected Works by {{ name }}</h1>
+      <h1 class="text-[30px] md:text-[36px] lg:text-[42px] font-display">Selected Works by {{ name }}</h1>
       <p class="pt-[12px] content">{{ bio }}</p>
       <div class="work-grid pt-[70px] flex flex-wrap items-end justify-between gap-[40px]">
-        <div v-for="work in workData" :key="work.id">
+        <div v-for="work in workData" :key="work.id" class="basis-full lg:basis-[calc(50%_-_20px)]">
           <img :src="work.thumbnailUrl" :alt="work.title" />
           <h2 class="text-[22px] pt-[16px]">{{ work.title }}</h2>
           <date>{{ work.date }}</date>
