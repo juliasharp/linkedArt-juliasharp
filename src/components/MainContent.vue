@@ -1,18 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 // @ts-ignore
-import { getClassifiedAs, getPrimaryName, normalizeFieldToArray, getFieldValuesByClassifications } from "@thegetty/linkedart.js";
+import {getPrimaryName, normalizeFieldToArray, getFieldValuesByClassifications } from "@thegetty/linkedart.js";
 
 const name = ref("");
 const bio = ref("");
 
 const selectedWorks = ['4f1e53f9-71c5-42aa-889c-f45877908e14', 'bfaf34c9-713e-4f58-8e3e-277d5bd9b764', 'c8aa5b81-3263-4f30-aabd-7d4e791d05f4','24677302-55c2-445d-9a71-c2f3ceb051a7', '07b7f032-3e6b-40d7-b904-1524d2ddb81d', '28f3b598-2502-49d2-9cb0-48bbbedc48b3'];
 
-const thumbnailUrl = ref([]);
-const workTitles = ref([]);
-
 const workData = ref([]);
 
+//get selected works
 const getLinkedArt = async (urls) => {
   const data = await Promise.all(
     urls.map(async (url) => {
@@ -21,6 +19,7 @@ const getLinkedArt = async (urls) => {
   return data;
 }
 
+//map to workData
 function mapToWorkData(work) {
   return {
     id: work.id,
@@ -34,7 +33,6 @@ onMounted (async () => {
   //get ansel adams person data
   const response = await fetch("https://data.getty.edu/museum/collection/person/bbe60198-3dc4-4c80-b775-a7c17f35cace");
   const anselAdams = await response.json();
-  console.log(anselAdams);
   
   name.value = getPrimaryName(anselAdams);
   bio.value = anselAdams.referred_to_by[0].content;
@@ -42,13 +40,9 @@ onMounted (async () => {
 
   //get selected works
   const linkedArtData = await getLinkedArt(selectedWorks);
+
   //map to workData array
   workData.value = linkedArtData.map(mapToWorkData);
-
-  console.log("classifications: ", workData.value.map(work => work.classification));
-
-  console.log("dates: ", workData.value.map(work => work.date));
-
 });
 
 
