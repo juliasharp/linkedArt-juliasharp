@@ -16,7 +16,7 @@ const workData = ref([]);
 const getLinkedArt = async (urls) => {
   const data = await Promise.all(
     urls.map(async (url) => {
-      return await (await fetch("http://data.getty.edu/museum/collection/object/" + url)).json()})
+      return await (await fetch("https://data.getty.edu/museum/collection/object/" + url)).json()})
   )
   return data;
 }
